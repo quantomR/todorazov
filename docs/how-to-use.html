@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Storefront Template — Наръчник</title>
+<style>
+	:root {
+		--bg: #f7f8f9; --surface: #ffffff; --border: #dde3e8;
+		--text: #20262c; --dim: #68737d; --accent: #4a6a85;
+		--code-bg: #eef1f4; --warn-bg: #fdf3e3; --warn-border: #e8c98a;
+		--tip-bg: #e8f2ec; --tip-border: #9cc7ab;
+	}
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--bg: #101214; --surface: #1a1d20; --border: #2e3338;
+			--text: #e4e7ea; --dim: #9aa3ab; --accent: #7ba3c7;
+			--code-bg: #23272b; --warn-bg: #3a3123; --warn-border: #8a713a;
+			--tip-bg: #22322a; --tip-border: #4a6a55;
+		}
+	}
+	* { box-sizing: border-box; }
+	body {
+		margin: 0; background: var(--bg); color: var(--text);
+		font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+		line-height: 1.6; font-size: 16px;
+	}
+	.wrap { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
+	header.hero {
+		text-align: center; padding: 36px 16px 28px;
+		border-bottom: 2px solid var(--accent); margin-bottom: 28px;
+	}
+	header.hero h1 { margin: 0 0 8px; font-size: 1.9rem; }
+	header.hero p { color: var(--dim); margin: 0; }
+	.badge {
+		display: inline-block; background: var(--accent); color: #fff;
+		border-radius: 20px; padding: 2px 14px; font-size: .8rem; margin-top: 12px;
+	}
+	nav.toc {
+		background: var(--surface); border: 1px solid var(--border);
+		border-radius: 10px; padding: 18px 22px; margin-bottom: 32px;
+	}
+	nav.toc strong { display: block; margin-bottom: 8px; }
+	nav.toc ol { margin: 0; padding-left: 22px; columns: 2; column-gap: 32px; }
+	nav.toc a { color: var(--accent); text-decoration: none; }
+	nav.toc a:hover { text-decoration: underline; }
+	section.step {
+		background: var(--surface); border: 1px solid var(--border);
+		border-radius: 10px; padding: 22px 26px; margin-bottom: 22px;
+	}
+	section.step h2 {
+		margin: 0 0 14px; font-size: 1.25rem; display: flex; align-items: center; gap: 12px;
+	}
+	.num {
+		flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+		background: var(--accent); color: #fff; display: inline-flex;
+		align-items: center; justify-content: center; font-size: 1rem; font-weight: 700;
+	}
+	pre {
+		background: var(--code-bg); border: 1px solid var(--border);
+		border-radius: 8px; padding: 12px 16px; overflow-x: auto; font-size: .88rem;
+	}
+	code { background: var(--code-bg); border-radius: 4px; padding: 1px 6px; font-size: .88em; }
+	pre code { background: none; padding: 0; }
+	table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+	th, td { border: 1px solid var(--border); padding: 7px 10px; text-align: left; vertical-align: top; }
+	th { background: var(--code-bg); }
+	.note { border-radius: 8px; padding: 12px 16px; margin: 14px 0; font-size: .92rem; }
+	.warn { background: var(--warn-bg); border: 1px solid var(--warn-border); }
+	.tip { background: var(--tip-bg); border: 1px solid var(--tip-border); }
+	ul.check { list-style: none; padding-left: 4px; }
+	ul.check li { margin: 7px 0; }
+	ul.check input { margin-right: 10px; transform: scale(1.15); }
+	.dim { color: var(--dim); }
+	@media (max-width: 640px) { nav.toc ol { columns: 1; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+	<h1>🛍️ Storefront Template</h1>
+	<p>Наръчник: нов брандиран сайт стъпка по стъпка</p>
+	<span class="badge">Реалистично време: под 1 час</span>
+</header>
+
+<nav class="toc">
+	<strong>Съдържание</strong>
+	<ol>
+		<li><a href="#s0">Какво ти трябва</a></li>
+		<li><a href="#s1">Repo от темплейта</a></li>
+		<li><a href="#s2">Инсталация</a></li>
+		<li><a href="#s3">Брандиране (brand.js)</a></li>
+		<li><a href="#s4">Асети</a></li>
+		<li><a href="#s5">Текстове</a></li>
+		<li><a href="#s6">Supabase</a></li>
+		<li><a href="#s7">Env променливи</a></li>
+		<li><a href="#s8">Локална проверка</a></li>
+		<li><a href="#s9">Email (по избор)</a></li>
+		<li><a href="#s10">Vercel</a></li>
+		<li><a href="#s10a">Алтернативи (Netlify/Cloudflare)</a></li>
+		<li><a href="#s11">Финален чеклист</a></li>
+	</ol>
+</nav>
+
+<section class="step" id="s0">
+	<h2><span class="num">0</span> Какво ти трябва предварително</h2>
+	<ul class="check">
+		<li><input type="checkbox"> GitHub акаунт</li>
+		<li><input type="checkbox"> Supabase акаунт <span class="dim">(free = макс. 2 активни проекта; ако са заети — нов акаунт с друг имейл)</span></li>
+		<li><input type="checkbox"> Vercel акаунт, вързан с GitHub</li>
+		<li><input type="checkbox"> Node.js 20+</li>
+		<li><input type="checkbox"> Лого (PNG), hero снимка, og изображение</li>
+	</ul>
+</section>
+
+<section class="step" id="s1">
+	<h2><span class="num">1</span> Създай repo от темплейта</h2>
+	<ol>
+		<li>Отвори <code>github.com/quantomR/storefront-template</code></li>
+		<li>Зелен бутон <b>Use this template</b> → <b>Create a new repository</b></li>
+		<li>Име = името на новия сайт → <b>Create repository</b></li>
+		<li>Клонирай:</li>
+	</ol>
+	<pre><code>git clone https://github.com/&lt;акаунт&gt;/&lt;repo&gt;.git
+cd &lt;repo&gt;</code></pre>
+	<div class="note warn">⚠️ <b>Vercel „Blocked" deploy:</b> commit author-ът трябва да е GitHub акаунтът, вързан с Vercel:
+	<pre><code>git config user.name "&lt;github-username&gt;"
+git config user.email "&lt;id&gt;+&lt;username&gt;@users.noreply.github.com"</code></pre>
+	<span class="dim">ID-то се вижда на api.github.com/users/&lt;username&gt;</span></div>
+</section>
+
+<section class="step" id="s2">
+	<h2><span class="num">2</span> Инсталация</h2>
+	<pre><code>npm install</code></pre>
+	<p class="dim"><code>.npmrc</code> в repo-то решава peer конфликтите — не го трий.</p>
+</section>
+
+<section class="step" id="s3">
+	<h2><span class="num">3</span> Брандиране — <code>src/config/brand.js</code></h2>
+	<p><b>Единственият код файл, който пипаш.</b></p>
+	<table>
+		<tr><th>Поле</th><th>Какво е</th></tr>
+		<tr><td><code>siteName</code></td><td>Името на бранда (header, имейли, title)</td></tr>
+		<tr><td><code>tagline / description</code></td><td>Слоган и meta описание, BG/EN</td></tr>
+		<tr><td><code>domain</code></td><td>Вътрешен домейн за админ входа (напр. <code>megamerch.local</code>)</td></tr>
+		<tr><td><code>siteUrl</code></td><td>Production URL за SEO; <code>null</code> за демо</td></tr>
+		<tr><td><code>adminSlug</code></td><td><b>Скритият админ path — неотгатваема дума!</b></td></tr>
+		<tr><td><code>storageKeyPrefix</code></td><td>Уникален префикс за localStorage</td></tr>
+		<tr><td><code>colorScheme</code></td><td><code>light</code> или <code>dark</code></td></tr>
+		<tr><td><code>palette.brand</code></td><td>10 нюанса на основния цвят (светъл → тъмен)</td></tr>
+		<tr><td><code>palette.dark</code></td><td>Само при тъмен сайт (7 = фон, 6 = карти, 4 = бордове)</td></tr>
+		<tr><td><code>fonts</code></td><td>body/heading + Google Fonts линк</td></tr>
+		<tr><td><code>semantic</code></td><td>Токени: фон, повърхности, борд, текст, акцент</td></tr>
+		<tr><td><code>currency.secondaryBgn</code></td><td>Показване на цени и в лева</td></tr>
+		<tr><td><code>features</code></td><td><code>cart</code> (количка+поръчки), <code>inquiry</code> (запитвания), <code>attributes</code> (спец. полета)</td></tr>
+	</table>
+	<div class="note tip">💡 Проверка: <code>npm run dev</code> — сайтът трябва да е в новите цветове <b>без да пипаш нищо друго</b>.</div>
+</section>
+
+<section class="step" id="s4">
+	<h2><span class="num">4</span> Асети <span class="dim">(фиксирани имена — презапиши файловете)</span></h2>
+	<ul class="check">
+		<li><input type="checkbox"> <code>public/logo.png</code> — лого (header + login)</li>
+		<li><input type="checkbox"> <code>public/favicon.png</code> — иконка за таба</li>
+		<li><input type="checkbox"> <code>public/og.jpg</code> — при споделяне (1200×630)</li>
+		<li><input type="checkbox"> <code>src/assets/hero.jpg</code> — снимката на началната страница</li>
+	</ul>
+	<div class="note tip">💡 Малка/размазана снимка → AI upscale (Real-ESRGAN) преди да я сложиш.</div>
+</section>
+
+<section class="step" id="s5">
+	<h2><span class="num">5</span> Текстове</h2>
+	<ol>
+		<li><code>src/i18n/bg.json</code> + <code>en.json</code> — пренапиши маркетинговите текстове</li>
+		<li><b><code>privacy.text</code> — задължително замени placeholder политиката</b> (checkout изисква съгласие с нея)</li>
+		<li>Името на бранда НЕ се пише в json — ползвай <code>{{brand}}</code></li>
+	</ol>
+	<pre><code>npm run check:i18n</code></pre>
+</section>
+
+<section class="step" id="s6">
+	<h2><span class="num">6</span> Supabase</h2>
+	<ol>
+		<li><b>New project</b> на supabase.com (запиши database паролата)</li>
+		<li><b>SQL Editor</b> → копирай <b>целия</b> <code>supabase/schema.sql</code> → Run</li>
+		<li>При notice за storage политики: <b>Storage → product-images → Policies</b> → добави ръчно: select (всички), insert/update/delete (authenticated)</li>
+		<li>Демо продуктите от seed-а — изтрий ги после през админа</li>
+		<li><b>Authentication → Users → Add user</b>:
+			<ul>
+				<li>Email: <code>admin@&lt;domain от brand.js&gt;</code></li>
+				<li>Парола: избери; ✅ <b>Auto Confirm User</b></li>
+				<li class="dim">Входът в сайта после е само с частта преди @ (напр. <code>admin</code>)</li>
+			</ul>
+		</li>
+	</ol>
+</section>
+
+<section class="step" id="s7">
+	<h2><span class="num">7</span> Env променливи</h2>
+	<pre><code>cp .env.example .env.local</code></pre>
+	<p>Попълни от Supabase → Project Settings → API:</p>
+	<pre><code>VITE_SUPABASE_URL=https://xxxx.supabase.co
+VITE_SUPABASE_ANON_KEY=&lt;anon / publishable key&gt;</code></pre>
+</section>
+
+<section class="step" id="s8">
+	<h2><span class="num">8</span> Локална проверка</h2>
+	<pre><code>npm run dev</code></pre>
+	<ul class="check">
+		<li><input type="checkbox"> Публичният сайт е брандиран</li>
+		<li><input type="checkbox"> <code>/&lt;adminSlug&gt;</code> → login → влизане успешно</li>
+		<li><input type="checkbox"> Категория + продукт (цветове/размери според нуждите) + снимки</li>
+		<li><input type="checkbox"> Продуктът се вижда в магазина; тестова поръчка минава</li>
+		<li><input type="checkbox"> <code>npm run check &amp;&amp; npm run build</code> — чисти</li>
+	</ul>
+</section>
+
+<section class="step" id="s9">
+	<h2><span class="num">9</span> Email известия <span class="dim">(по избор — може и по-късно)</span></h2>
+	<pre><code>npx supabase functions deploy send-email --project-ref &lt;ref&gt;
+npx supabase secrets set GMAIL_USER=you@gmail.com GMAIL_APP_PASSWORD=xxxx SITE_NAME="Име" --project-ref &lt;ref&gt;</code></pre>
+	<p class="dim"><code>GMAIL_APP_PASSWORD</code> = Google App Password (изисква 2FA на Gmail). После: админ → Настройки → „Имейл за известия".</p>
+</section>
+
+<section class="step" id="s10">
+	<h2><span class="num">10</span> Vercel</h2>
+	<ol>
+		<li>Пушни промените: <code>git add -A && git commit -m "brand setup" && git push</code></li>
+		<li>vercel.com → <b>Add New → Project</b> → импортирай repo-то (Framework: Vite)</li>
+		<li><b>Environment Variables</b>: <code>VITE_SUPABASE_URL</code> + <code>VITE_SUPABASE_ANON_KEY</code></li>
+		<li><b>Deploy</b></li>
+	</ol>
+</section>
+
+<section class="step" id="s10a">
+	<h2><span class="num">10а</span> Алтернативи на Vercel <span class="dim">(по избор)</span></h2>
+	<p>Сайтът е статичен build — тези хостинги работят еднакво добре. SPA redirect-ите са покрити от <code>vercel.json</code> и <code>public/_redirects</code>, които вече са в темплейта.</p>
+	<table>
+		<tr><th></th><th>Netlify</th><th>Cloudflare Pages</th></tr>
+		<tr><td>Къде</td><td>app.netlify.com → Add new site → Import project</td><td>dash.cloudflare.com → Workers &amp; Pages → Create → Pages → Connect to Git</td></tr>
+		<tr><td>Build command</td><td><code>npm run build</code></td><td><code>npm run build</code> (preset: Vite)</td></tr>
+		<tr><td>Output dir</td><td><code>dist</code></td><td><code>dist</code></td></tr>
+		<tr><td>Env vars</td><td colspan="2"><code>VITE_SUPABASE_URL</code> + <code>VITE_SUPABASE_ANON_KEY</code></td></tr>
+	</table>
+	<div class="note warn">ℹ️ <b>Astro не е хостинг</b> — това е framework (алтернатива на React+Vite, с който е строен темплейтът). Сайтовете се деплойват на Vercel/Netlify/Cloudflare — не „на Astro".</div>
+</section>
+
+<section class="step" id="s11">
+	<h2><span class="num">11</span> Финален чеклист</h2>
+	<ul class="check">
+		<li><input type="checkbox"> Responsive: телефон (375), таблет (768), десктоп (1280)</li>
+		<li><input type="checkbox"> Админ слъгът НЕ е линкнат в публичния сайт</li>
+		<li><input type="checkbox"> Демо продуктите са заменени с реални</li>
+		<li><input type="checkbox"> <code>privacy.text</code> е реална политика</li>
+		<li><input type="checkbox"> <code>siteUrl</code> попълнен + нов deploy (SEO)</li>
+		<li><input type="checkbox"> Сподели линк в чат — preview-то показва og.jpg</li>
+		<li><input type="checkbox"> <code>npm run check</code> чист</li>
+	</ul>
+</section>
+
+<section class="step">
+	<h2><span class="num">🔧</span> Ако нещо се счупи</h2>
+	<table>
+		<tr><th>Симптом</th><th>Причина</th><th>Решение</th></tr>
+		<tr><td>Vercel „Blocked" deploy</td><td>Commit author ≠ Vercel акаунта</td><td>Стъпка 1, git config бележката</td></tr>
+		<tr><td>npm install ERESOLVE</td><td>Изтрит <code>.npmrc</code></td><td>Върни го (<code>legacy-peer-deps=true</code>)</td></tr>
+		<tr><td>Празна бяла страница</td><td>Празен/грешен <code>.env.local</code></td><td>Стъпка 7 + браузър Console</td></tr>
+		<tr><td>Login не работи</td><td>Друг domain на потребителя</td><td>Email = <code>&lt;user&gt;@&lt;brand.domain&gt;</code></td></tr>
+		<tr><td>Снимки не се качват</td><td>Липсват storage политики</td><td>Стъпка 6.3 — през Dashboard</td></tr>
+		<tr><td>Чужд цвят някъде</td><td>Hex извън brand.js</td><td><code>npm run check:theme</code> показва къде</td></tr>
+	</table>
+</section>
+
+<p class="dim" style="text-align:center; margin-top: 32px;">
+	Markdown версия: <code>docs/HOW-TO-USE.md</code> · Технически детайли: <code>README.md</code> и <code>TEMPLATE.md</code>
+</p>
+
+</div>
+</body>
+</html>

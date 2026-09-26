@@ -1,0 +1,434 @@
+{
+	"nav": {
+		"home": "Home",
+		"shop": "Shop",
+		"inquiry": "Inquiry",
+		"services": "Services",
+		"about": "About",
+		"contact": "Contact",
+		"cart": "Cart"
+	},
+	"home": {
+		"heroCta": "Browse the shop",
+		"featuredTitle": "Featured products",
+		"latestVideoTitle": "Latest video"
+	},
+	"shop": {
+		"title": "Shop",
+		"allCategories": "All categories",
+		"sortNewest": "Newest",
+		"sortPriceAsc": "Price ↑",
+		"sortPriceDesc": "Price ↓",
+		"empty": "No products at the moment",
+		"filters": "Filters",
+		"clearFilters": "Clear",
+		"sortRating": "Top rated"
+	},
+	"product": {
+		"selectColor": "Color",
+		"selectSize": "Size",
+		"addToCart": "Add to cart",
+		"addedToCart": "Added to cart",
+		"backToShop": "Back to shop",
+		"chooseOptions": "Choose color and size"
+	},
+	"cart": {
+		"title": "Cart",
+		"empty": "Your cart is empty",
+		"emptyCta": "Go to shop",
+		"summary": "Summary",
+		"total": "Total",
+		"checkout": "Checkout",
+		"remove": "Remove"
+	},
+	"checkout": {
+		"title": "Checkout",
+		"contactTitle": "Contact details",
+		"deliveryTitle": "Delivery address",
+		"firstName": "First name",
+		"lastName": "Last name",
+		"phone": "Phone",
+		"email": "Email (optional)",
+		"address": "Address",
+		"city": "City",
+		"zip": "Postal code",
+		"note": "Order note (optional)",
+		"submit": "Place order",
+		"codNote": "Payment on delivery (cash on delivery).",
+		"consent": "I agree that my personal data will be processed to fulfil the order —",
+		"consentRequired": "Consent is required",
+		"payCod": "Cash on delivery",
+		"payCard": "Card",
+		"payCardSubmit": "Pay by card",
+		"deliveryAddress": "To address",
+		"deliveryOffice": "To courier office",
+		"office": "Courier office",
+		"officePlaceholder": "Pick an office",
+		"officeRequired": "Please pick a courier office"
+	},
+	"thankYou": {
+		"title": "Thank you for your order!",
+		"orderNumber": "Order number",
+		"text": "We will contact you to confirm.",
+		"backToShop": "Back to shop",
+		"processing": "Confirming your payment…",
+		"processingText": "Please wait a moment.",
+		"pendingText": "Your payment is being processed — you will get an email once confirmed."
+	},
+	"inquiry": {
+		"title": "Inquiry",
+		"subtitle": "Write to us and we will get back to you.",
+		"name": "Name",
+		"email": "Email",
+		"phone": "Phone (optional)",
+		"subject": "Subject",
+		"message": "Message",
+		"submit": "Send",
+		"successTitle": "Inquiry sent!",
+		"successText": "We will reply as soon as possible."
+	},
+	"about": {
+		"title": "About {{brand}}",
+		"text": "Tell the brand story here."
+	},
+	"contact": {
+		"title": "Contact",
+		"phone": "Phone",
+		"email": "Email",
+		"workingHours": "Working hours",
+		"closed": "Closed"
+	},
+	"days": {
+		"monday": "Monday",
+		"tuesday": "Tuesday",
+		"wednesday": "Wednesday",
+		"thursday": "Thursday",
+		"friday": "Friday",
+		"saturday": "Saturday",
+		"sunday": "Sunday"
+	},
+	"services": {
+		"title": "Price list",
+		"subtitle": "Our services and prices.",
+		"empty": "No services yet.",
+		"onRequest": "On request",
+		"add": "New entry",
+		"edit": "Edit entry",
+		"saved": "Saved",
+		"deleted": "Deleted",
+		"deleteConfirm": "Delete entry?",
+		"deleteWarning": "This price-list entry will be deleted.",
+		"categoryBg": "Category (BG)",
+		"categoryEn": "Category (EN)",
+		"nameBg": "Name (BG)",
+		"nameEn": "Name (EN)",
+		"price": "Price (EUR)",
+		"priceHint": "Leave empty for \"on request\".",
+		"sortOrder": "Order",
+		"active": "Active",
+		"inactive": "Inactive"
+	},
+	"filters": {
+		"title": "Filters",
+		"add": "New filter",
+		"edit": "Edit filter",
+		"saved": "Filter saved",
+		"deleted": "Filter deleted",
+		"deleteConfirm": "Delete filter?",
+		"deleteWarning": "The filter, its options and product selections will be deleted.",
+		"nameBg": "Name (BG)",
+		"nameEn": "Name (EN)",
+		"category": "Category",
+		"allCategories": "All categories",
+		"unit": "Unit",
+		"unitPlaceholder": "cm, kg, ...",
+		"type": "Type",
+		"typeCheckbox": "Checkboxes",
+		"typeRange": "Numeric range",
+		"sortOrder": "Order",
+		"options": "Options",
+		"noOptions": "No options added",
+		"valueBg": "Value (BG)",
+		"valueEn": "Value (EN)",
+		"addOption": "Add option",
+		"productTitle": "Filters"
+	},
+	"reviews": {
+		"title": "Reviews",
+		"empty": "No reviews yet — be the first.",
+		"writeTitle": "Write a review",
+		"yourName": "Your name",
+		"yourRating": "Your rating",
+		"yourComment": "Comment",
+		"submit": "Submit review",
+		"submitted": "Thank you! Your review is awaiting approval.",
+		"moderationNote": "Reviews appear after moderation.",
+		"ratingRequired": "Please pick a rating",
+		"adminTitle": "Reviews",
+		"product": "Product",
+		"author": "Author",
+		"rating": "Rating",
+		"comment": "Comment",
+		"status": "Status",
+		"approved": "Approved",
+		"pending": "Pending",
+		"deleted": "Review deleted"
+	},
+	"consent": {
+		"text": "We use cookies for analytics. See our",
+		"accept": "Accept",
+		"decline": "Decline"
+	},
+	"privacy": {
+		"title": "Privacy policy",
+		"text": "[REPLACE THIS TEXT WHEN CLONING]\n\n{{brand}} collects personal data (name, phone, email, delivery address) solely to process orders and inquiries. Data is not shared with third parties except for delivery purposes.\n\nFor questions about your personal data, contact us via the contact form or the listed contacts."
+	},
+	"legal": {
+		"draftNotice": "Draft for review — replace this text with your own terms and have them checked by a lawyer before going live."
+	},
+	"terms": {
+		"title": "Terms of service",
+		"sections": [
+			{
+				"heading": "General",
+				"body": "By browsing this website and placing orders you agree to these terms. Please read them before using the store."
+			},
+			{
+				"heading": "Orders and prices",
+				"body": "All prices are shown in EUR (and, where enabled, in BGN). A placed order is a proposal to buy; the contract is concluded once we confirm the order. We may decline an order if an item is unavailable or a price is clearly wrong."
+			},
+			{
+				"heading": "Payment",
+				"body": "Accepted payment methods are shown at checkout. Payments are processed by our payment provider; we do not store full card details."
+			},
+			{
+				"heading": "Delivery",
+				"body": "Delivery times and costs are shown before you confirm your order and depend on the courier and destination."
+			},
+			{
+				"heading": "Right of withdrawal and returns",
+				"body": "As a consumer you may return most items within 14 days without giving a reason, in line with applicable EU consumer law. See the Refund policy for details and exceptions."
+			},
+			{
+				"heading": "Liability",
+				"body": "We take care that product information is accurate but cannot guarantee it is free of errors. We are not liable for indirect or consequential damages to the extent permitted by law."
+			},
+			{
+				"heading": "Changes and contact",
+				"body": "We may update these terms; the current version always applies. For any questions use the contacts listed on the site."
+			}
+		]
+	},
+	"refund": {
+		"title": "Refund policy",
+		"sections": [
+			{
+				"heading": "Overview",
+				"body": "We want you to be happy with your purchase. If something is not right, you can return eligible items for a refund under the conditions below."
+			},
+			{
+				"heading": "Return period",
+				"body": "You may request a return within 14 days of receiving your order, in line with applicable EU consumer law."
+			},
+			{
+				"heading": "Conditions",
+				"body": "To be eligible for a refund, items should be:",
+				"points": [
+					"unused and in their original condition",
+					"in the original packaging where possible",
+					"accompanied by proof of purchase (order number)"
+				]
+			},
+			{
+				"heading": "How to request a refund",
+				"body": "Contact us using the details on the site with your order number and the reason for the return. We will explain how to send the item back."
+			},
+			{
+				"heading": "Refund processing",
+				"body": "Once we receive and inspect the returned item, we process the refund to your original payment method, usually within 14 days. Return shipping costs may be borne by the customer unless the item was faulty."
+			}
+		]
+	},
+	"auth": {
+		"username": "Username",
+		"password": "Password",
+		"login": "Log in",
+		"logout": "Log out",
+		"loginError": "Wrong username or password",
+		"required": "This field is required"
+	},
+	"admin": {
+		"dashboard": "Dashboard",
+		"categories": "Categories",
+		"products": "Products",
+		"attributes": "Fields",
+		"filters": "Filters",
+		"orders": "Orders",
+		"inquiries": "Inquiries",
+		"services": "Price list",
+		"reviews": "Reviews",
+		"settings": "Settings",
+		"totalProducts": "Total products",
+		"activeProducts": "Active",
+		"newOrders": "New orders",
+		"newInquiries": "New inquiries"
+	},
+	"categories": {
+		"title": "Categories",
+		"add": "New category",
+		"edit": "Edit category",
+		"nameBg": "Name (BG)",
+		"nameEn": "Name (EN)",
+		"actions": "Actions",
+		"saved": "Category saved",
+		"deleted": "Category deleted",
+		"deleteConfirm": "Delete category?",
+		"deleteWarning": "Products in it will be left without a category."
+	},
+	"attributes": {
+		"title": "Product fields",
+		"hint": "These fields appear on every product. Drag to reorder. \"Collapsed\" = revealed on expand.",
+		"add": "New field",
+		"edit": "Edit field",
+		"nameBg": "Name (BG)",
+		"nameEn": "Name (EN)",
+		"collapsed": "Collapsed",
+		"collapsedHint": "Shown after expanding the card",
+		"saved": "Field saved",
+		"deleted": "Field deleted",
+		"deleteConfirm": "Delete field?",
+		"deleteWarning": "The field and its values will be deleted."
+	},
+	"productsAdmin": {
+		"add": "New product",
+		"edit": "Edit product",
+		"sku": "SKU",
+		"nameBg": "Name (BG)",
+		"nameEn": "Name (EN)",
+		"descriptionBg": "Description (BG)",
+		"descriptionEn": "Description (EN)",
+		"category": "Category",
+		"price": "Price (EUR)",
+		"active": "Active",
+		"activeHint": "Inactive products are hidden from the shop",
+		"featured": "Featured",
+		"featuredHint": "Shown on the home page",
+		"hasColors": "Product has colors",
+		"hasSizes": "Product has sizes",
+		"colors": "Colors",
+		"colorNameBg": "Color (BG)",
+		"colorNameEn": "Color (EN)",
+		"colorHex": "Color",
+		"priceOverride": "Price override (EUR, optional)",
+		"addColor": "Add color",
+		"noColors": "No colors added",
+		"sizes": "Sizes",
+		"sizeLabel": "Size",
+		"addSize": "Add size",
+		"noSizes": "No sizes added",
+		"sizeExists": "This size is already added",
+		"images": "Photos",
+		"mainImage": "Main",
+		"imagesHint": "Drag to reorder — the first photo is the main one",
+		"dropzoneHint": "Drop photos here or click (up to 5MB)",
+		"uploadError": "Upload failed",
+		"uploadReject": "File is too large or not an image",
+		"saveFirstForImages": "Save the product first to add photos",
+		"specs": "Specifications",
+		"valueBg": "Value (BG)",
+		"valueEn": "Value (EN)",
+		"customFields": "Custom fields (only for this product)",
+		"noCustomFields": "No custom fields",
+		"addCustomField": "Add field",
+		"fieldNameBg": "Name (BG)",
+		"fieldNameEn": "Name (EN)",
+		"saved": "Product saved",
+		"deleted": "Product deleted",
+		"deleteConfirm": "Delete product?",
+		"deleteWarning": "The product, its photos and data will be deleted.",
+		"seoTitle": "SEO",
+		"seoHint": "Optional. Empty fields fall back to the product name and description.",
+		"seoFallbackHint": "Short description for search engines.",
+		"seoPreview": "Search-result preview",
+		"metaTitleBg": "Meta title (BG)",
+		"metaTitleEn": "Meta title (EN)",
+		"metaDescBg": "Meta description (BG)",
+		"metaDescEn": "Meta description (EN)",
+		"metaTitleLen": "~60 characters",
+		"metaDescLen": "~155 characters",
+		"cardImageTitle": "Card image",
+		"cardFit": "Fit",
+		"cardFitCover": "Fill (crop)",
+		"cardFitContain": "Fit (no crop)",
+		"cardFocusLabel": "Focal point",
+		"cardFocusHint": "Drag to choose which part of the photo stays visible when cropped.",
+		"discountType": "Discount",
+		"discountNone": "None",
+		"discountPercent": "Percent (%)",
+		"discountFlat": "Fixed amount (EUR)",
+		"discountValue": "Discount value",
+		"videoUrl": "Video URL (YouTube / Vimeo / mp4)"
+	},
+	"ordersAdmin": {
+		"title": "Order",
+		"statusLabel": "Status",
+		"date": "Date",
+		"client": "Client",
+		"total": "Total",
+		"items": "Items",
+		"delivery": "Delivery",
+		"note": "Note",
+		"status": {
+			"new": "New",
+			"confirmed": "Confirmed",
+			"shipped": "Shipped",
+			"completed": "Completed",
+			"cancelled": "Cancelled"
+		},
+		"setStatus": "Change status",
+		"statusUpdated": "Status updated",
+		"deleted": "Order deleted"
+	},
+	"inquiriesAdmin": {
+		"title": "Inquiry",
+		"status": {
+			"new": "New",
+			"processed": "Processed"
+		},
+		"markProcessed": "Mark as processed",
+		"processed": "Inquiry processed",
+		"deleted": "Inquiry deleted"
+	},
+	"settings": {
+		"adminEmail": "Notification email",
+		"adminEmailHint": "Receives orders and inquiries; also shown in contacts",
+		"contactPhone": "Contact phone",
+		"contactEmail": "Contact email",
+		"contactAddress": "Address",
+		"workingHours": "Working hours",
+		"workingHoursHint": "Leave a day empty or mark it closed to hide it.",
+		"showBgn": "Also show prices in BGN",
+		"pinnedVideo": "Pinned video (optional)",
+		"pinnedVideoHint": "Paste a YouTube link to feature a specific video. Leave empty to always show the latest upload.",
+		"saved": "Settings saved",
+		"saveError": "Failed to save settings"
+	},
+	"common": {
+		"loading": "Loading...",
+		"save": "Save",
+		"cancel": "Cancel",
+		"delete": "Delete",
+		"edit": "Edit",
+		"add": "Add",
+		"error": "Something went wrong",
+		"backHome": "Back to home",
+		"notFoundTitle": "Page not found",
+		"notFoundText": "The page you are looking for does not exist.",
+		"invalidEmail": "Invalid email",
+		"rights": "All rights reserved"
+	},
+	"language": {
+		"bg": "БГ",
+		"en": "EN"
+	}
+}
