@@ -10,6 +10,7 @@ import {
 	IconShoppingBag,
 	IconMessageCircle,
 	IconReceipt,
+	IconTicket,
 	IconStar,
 	IconBriefcase,
 	IconInbox,
@@ -54,6 +55,12 @@ const NAV_ITEMS = [
 		label: 'admin.services',
 		icon: IconReceipt,
 		when: brand.features.services,
+	},
+	{
+		path: `/${slug}/coupons`,
+		label: 'admin.coupons',
+		icon: IconTicket,
+		when: brand.features.coupons && brand.features.cart,
 	},
 	{
 		path: `/${slug}/reviews`,

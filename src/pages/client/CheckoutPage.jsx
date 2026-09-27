@@ -10,6 +10,7 @@ import {
 	Group,
 	Paper,
 	SegmentedControl,
+	Stack,
 	Text,
 	Textarea,
 	TextInput,
@@ -21,6 +22,7 @@ import { useTranslation } from 'react-i18next';
 import { brand } from '@/config/brand';
 import useCartStore from '@store/cartStore';
 import { createOrder, startCardCheckout } from '@services/orderService';
+import { validateCoupon } from '@services/couponService';
 import { notifyOrder } from '@lib/emailClient';
 import { usePageMeta } from '@lib/meta';
 import Price from '@components/shop/Price';
@@ -34,9 +36,15 @@ function CheckoutPage() {
 	const [paymentMethod, setPaymentMethod] = useState('cod');
 	const [deliveryMethod, setDeliveryMethod] = useState('address');
 	const [office, setOffice] = useState(null);
+	const [couponInput, setCouponInput] = useState('');
+	const [coupon, setCoupon] = useState(null);
+	const [couponMsg, setCouponMsg] = useState(null);
+	const [checkingCoupon, setCheckingCoupon] = useState(false);
 	// Read in the (static) form validators so they react to the current choice.
 	const deliveryRef = useRef('address');
-	const totalEur = items.reduce((sum, i) => sum + i.priceEur * i.qty, 0);
+	const subtotalEur = items.reduce((sum, i) => sum + i.priceEur * i.qty, 0);
+	const discount = coupon?.discount ?? 0;
+	const totalEur = Math.max(0, subtotalEur - discount);
 	usePageMeta({ title: t('checkout.title'), noindex: true });
 
 	const setDelivery = (value) => {
@@ -72,6 +80,35 @@ function CheckoutPage() {
 		return <Navigate to="/cart" replace />;
 	}
 
+	const applyCoupon = async () => {
+		if (!couponInput.trim()) return;
+		setCheckingCoupon(true);
+		setCouponMsg(null);
+		try {
+			const res = await validateCoupon(couponInput.trim(), subtotalEur);
+			if (res?.valid) {
+				setCoupon({ code: res.code, discount: Number(res.discount_eur) });
+			} else {
+				setCoupon(null);
+				setCouponMsg(
+					res?.reason === 'min_order'
+						? t('coupon.minOrder', { min: res.min_order_eur })
+						: t('coupon.invalid')
+				);
+			}
+		} catch {
+			setCouponMsg(t('coupon.invalid'));
+		} finally {
+			setCheckingCoupon(false);
+		}
+	};
+
+	const removeCoupon = () => {
+		setCoupon(null);
+		setCouponInput('');
+		setCouponMsg(null);
+	};
+
 	const handleSubmit = async (values) => {
 		if (officeMode && !office) {
 			notifications.show({ message: t('checkout.officeRequired'), color: 'red' });
@@ -92,7 +129,14 @@ function CheckoutPage() {
 				window.location.assign(url);
 				return;
 			}
-			const { orderNumber } = await createOrder({ form: values, items, totalEur, deliveryAddress });
+			const { orderNumber } = await createOrder({
+				form: values,
+				items,
+				totalEur,
+				deliveryAddress,
+				couponCode: coupon?.code ?? null,
+				discountEur: discount,
+			});
 			notifyOrder({ orderNumber, form: values, items, totalEur }).catch(() => {});
 			clearCart();
 			navigate('/thank-you', { state: { orderNumber } });
@@ -204,7 +248,56 @@ function CheckoutPage() {
 								</Group>
 							))}
 							<Divider my="sm" />
-							<Group justify="space-between" mb="md">
+							{brand.features.coupons && (
+								<Stack gap={6} mb="sm">
+									{coupon ? (
+										<Group justify="space-between" wrap="nowrap">
+											<Text size="sm" c="green.6">
+												{t('coupon.applied', { code: coupon.code })}
+											</Text>
+											<Button
+												variant="subtle"
+												size="compact-xs"
+												color="gray"
+												onClick={removeCoupon}
+											>
+												{t('common.delete')}
+											</Button>
+										</Group>
+									) : (
+										<Group gap="xs" align="flex-start" wrap="nowrap">
+											<TextInput
+												size="xs"
+												style={{ flex: 1 }}
+												placeholder={t('coupon.placeholder')}
+												value={couponInput}
+												error={couponMsg}
+												onChange={(e) => setCouponInput(e.currentTarget.value)}
+											/>
+											<Button
+												size="xs"
+												variant="light"
+												loading={checkingCoupon}
+												onClick={applyCoupon}
+											>
+												{t('coupon.apply')}
+											</Button>
+										</Group>
+									)}
+								</Stack>
+							)}
+							{discount > 0 && (
+								<Group justify="space-between">
+									<Text size="sm" c="dimmed">
+										{t('coupon.discount')}
+									</Text>
+									<Group gap={2} wrap="nowrap">
+										<Text size="sm">−</Text>
+										<Price eur={discount} size="sm" />
+									</Group>
+								</Group>
+							)}
+							<Group justify="space-between" mb="md" mt={4}>
 								<Text fw={600}>{t('cart.total')}</Text>
 								<Price eur={totalEur} />
 							</Group>

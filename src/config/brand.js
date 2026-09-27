@@ -124,6 +124,7 @@ export const brand = {
 		youtube: true, // latest-video section on the homepage (see brand.youtube)
 		careers: true, // "join the channel": open positions + applications with CV upload
 		bookPreview: true, // per-product PDF flipbook preview (trimmed demo pages)
+		coupons: true, // discount codes at checkout (members/subscribers)
 	},
 
 	// Latest-video section (features.youtube). Admins pin a video in Settings;

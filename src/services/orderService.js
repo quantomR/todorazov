@@ -7,7 +7,14 @@ const generateOrderNumber = () =>
  * Public checkout insert — anon RLS allows insert only, so no
  * `.select()` here. Items are the cart snapshots verbatim.
  */
-export const createOrder = async ({ form, items, totalEur, deliveryAddress }) => {
+export const createOrder = async ({
+	form,
+	items,
+	totalEur,
+	deliveryAddress,
+	couponCode = null,
+	discountEur = 0,
+}) => {
 	const orderNumber = generateOrderNumber();
 	const { error } = await supabase.from('orders').insert([
 		{
@@ -22,6 +29,8 @@ export const createOrder = async ({ form, items, totalEur, deliveryAddress }) =>
 			},
 			items,
 			total_eur: Number(totalEur),
+			coupon_code: couponCode,
+			discount_eur: discountEur || null,
 			notes: form.note || null,
 		},
 	]);

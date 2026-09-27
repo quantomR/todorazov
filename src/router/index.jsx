@@ -39,6 +39,7 @@ const InquiriesPage = lazy(() => import('@pages/admin/InquiriesPage'));
 const InquiryDetailPage = lazy(() => import('@pages/admin/InquiryDetailPage'));
 const ReviewsPage = lazy(() => import('@pages/admin/ReviewsPage'));
 const ServicesAdminPage = lazy(() => import('@pages/admin/ServicesAdminPage'));
+const CouponsPage = lazy(() => import('@pages/admin/CouponsPage'));
 const PositionsAdminPage = lazy(() => import('@pages/admin/PositionsAdminPage'));
 const ApplicationsPage = lazy(() => import('@pages/admin/ApplicationsPage'));
 const SettingsPage = lazy(() => import('@pages/admin/SettingsPage'));
@@ -56,7 +57,8 @@ const S = (Component) => (
 );
 
 const slug = brand.adminSlug;
-const { cart, inquiry, attributes, services, legal, filters, reviews, careers } = brand.features;
+const { cart, inquiry, attributes, services, legal, filters, reviews, careers, coupons } =
+	brand.features;
 
 const clientChildren = [
 	{ path: '/', element: S(HomePage) },
@@ -105,6 +107,7 @@ const adminChildren = [
 			]
 		: []),
 	...(services ? [{ path: `/${slug}/services`, element: S(ServicesAdminPage) }] : []),
+	...(coupons && cart ? [{ path: `/${slug}/coupons`, element: S(CouponsPage) }] : []),
 	...(careers
 		? [
 				{ path: `/${slug}/positions`, element: S(PositionsAdminPage) },
