@@ -60,7 +60,13 @@ function Header() {
 			<Container size="xl" py="xs">
 				<Group justify="space-between" wrap="nowrap">
 					<Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-						<Image src={brand.logo.header} alt={brand.siteName} h={44} w="auto" fit="contain" />
+						<Image
+							src={brand.logo.mark ?? brand.logo.header}
+							alt={brand.siteName}
+							h={46}
+							w="auto"
+							fit="contain"
+						/>
 					</Link>
 					<Group gap="lg" wrap="nowrap">
 						<Group gap="xl" visibleFrom="sm">

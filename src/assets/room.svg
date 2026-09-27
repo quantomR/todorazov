@@ -44,6 +44,9 @@
     <line x1="1180" y1="900" x2="880" y2="632"/>
   </g>
 
+  <!-- ceiling shadow (encloses the room from the top) -->
+  <polygon points="0,0 1600,0 1400,124 200,124" fill="#0c1020" opacity="0.6"/>
+
   <!-- warm ambient glow behind the TV -->
   <rect x="0" y="0" width="1600" height="900" fill="url(#glow)"/>
 
@@ -64,6 +67,8 @@
   <!-- rug under the TV -->
   <ellipse cx="800" cy="760" rx="520" ry="70" fill="#2a3352" opacity="0.7"/>
   <ellipse cx="800" cy="760" rx="520" ry="70" fill="none" stroke="#3fe0d0" stroke-width="3" opacity="0.35"/>
+  <!-- soft screen-light spill on the floor -->
+  <ellipse cx="800" cy="702" rx="320" ry="48" fill="#ffbe83" opacity="0.12" filter="url(#soft)"/>
 
   <!-- left console + plant + books -->
   <g>

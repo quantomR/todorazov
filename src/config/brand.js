@@ -28,7 +28,8 @@ export const brand = {
 	siteUrl: null,
 
 	logo: {
-		header: '/logo.png',
+		header: '/logo.png', // full lockup (login, etc.)
+		mark: '/logo-mark.png', // compact hexagon-head mark for the header bar
 		favicon: '/favicon.png',
 		og: '/og.jpg',
 	},
