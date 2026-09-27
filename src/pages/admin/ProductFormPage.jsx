@@ -28,6 +28,7 @@ import { createCustomField } from '@lib/localized';
 import CardImageFocusPicker from '@components/admin/CardImageFocusPicker';
 import ProductCoreFields from '@components/admin/ProductCoreFields';
 import ProductImagesManager from '@components/admin/ProductImagesManager';
+import BookPreviewManager from '@components/admin/BookPreviewManager';
 import ColorsEditor from '@components/admin/ColorsEditor';
 import SizesEditor from '@components/admin/SizesEditor';
 import GlobalAttributeInputs from '@components/admin/GlobalAttributeInputs';
@@ -254,6 +255,21 @@ function ProductFormPage() {
 							</Title>
 							{isEdit ? (
 								<ProductImagesManager productId={id} colorId={null} />
+							) : (
+								<Text size="sm" c="dimmed">
+									{t('productsAdmin.saveFirstForImages')}
+								</Text>
+							)}
+						</Card>
+					)}
+
+					{brand.features.bookPreview && (
+						<Card withBorder mb="md">
+							<Title order={4} mb="sm">
+								{t('bookPreview.title')}
+							</Title>
+							{isEdit ? (
+								<BookPreviewManager productId={id} />
 							) : (
 								<Text size="sm" c="dimmed">
 									{t('productsAdmin.saveFirstForImages')}

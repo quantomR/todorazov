@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
 	Anchor,
@@ -8,6 +8,7 @@ import {
 	Grid,
 	Group,
 	Loader,
+	Modal,
 	NumberInput,
 	Rating,
 	Stack,
@@ -15,7 +16,7 @@ import {
 	Title,
 } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import { IconArrowLeft, IconShoppingCartPlus } from '@tabler/icons-react';
+import { IconArrowLeft, IconBook, IconShoppingCartPlus } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import { brand } from '@/config/brand';
 import {
@@ -38,6 +39,9 @@ import SizePicker from '@components/shop/SizePicker';
 import SpecList from '@components/shop/SpecList';
 import Price from '@components/shop/Price';
 
+// Flipbook viewer is heavy (pdfjs + react-pageflip) — load it only on demand.
+const BookFlip = lazy(() => import('@components/shop/BookFlip'));
+
 function ProductDetailPage() {
 	const { t, i18n } = useTranslation();
 	const { id } = useParams();
@@ -48,6 +52,7 @@ function ProductDetailPage() {
 	const [colorId, setColorId] = useState(null);
 	const [sizeId, setSizeId] = useState(null);
 	const [qty, setQty] = useState(1);
+	const [previewOpen, setPreviewOpen] = useState(false);
 	const lang = i18n.language;
 
 	useEffect(() => {
@@ -173,6 +178,17 @@ function ProductDetailPage() {
 						title={localized(product, 'name', lang)}
 					/>
 					{brand.features.video && <ProductVideo url={product.video_url} />}
+					{brand.features.bookPreview && product.preview_pdf_path && (
+						<Button
+							variant="light"
+							fullWidth
+							mt="md"
+							leftSection={<IconBook size={18} />}
+							onClick={() => setPreviewOpen(true)}
+						>
+							{t('bookPreview.read')}
+						</Button>
+					)}
 				</Grid.Col>
 				<Grid.Col span={{ base: 12, md: 6 }}>
 					<Title order={1} fz={{ base: 26, md: 32 }}>
@@ -245,6 +261,28 @@ function ProductDetailPage() {
 			</Grid>
 
 			{brand.features.reviews && <ProductReviews productId={product.id} />}
+
+			{brand.features.bookPreview && product.preview_pdf_path && (
+				<Modal
+					opened={previewOpen}
+					onClose={() => setPreviewOpen(false)}
+					title={t('bookPreview.title')}
+					size="auto"
+					centered
+				>
+					<Suspense
+						fallback={
+							<Center py="xl">
+								<Loader />
+							</Center>
+						}
+					>
+						{previewOpen && (
+							<BookFlip path={product.preview_pdf_path} pages={product.preview_pdf_pages} />
+						)}
+					</Suspense>
+				</Modal>
+			)}
 		</Container>
 	);
 }

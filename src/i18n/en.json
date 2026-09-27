@@ -323,6 +323,21 @@
 		"deleteConfirm": "Delete application?",
 		"deleteWarning": "This cannot be undone."
 	},
+	"bookPreview": {
+		"title": "Book preview",
+		"read": "Read a few pages",
+		"hint": "Upload the book PDF and pick how many pages to show as a free preview — only those pages are stored.",
+		"upload": "Book PDF",
+		"uploadHint": "Choose a PDF; the demo is cut to the page you pick.",
+		"cutoff": "Preview up to page",
+		"cutoffHint": "of {{total}} pages",
+		"save": "Save preview",
+		"saved": "Preview saved",
+		"removed": "Preview removed",
+		"currentPages": "Current preview: {{n}} pages",
+		"readError": "Couldn't read this PDF.",
+		"failed": "Couldn't load the preview."
+	},
 	"categories": {
 		"title": "Categories",
 		"add": "New category",

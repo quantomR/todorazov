@@ -868,3 +868,7 @@ exception when insufficient_privilege then
 	raise notice 'Add storage policies for bucket applications via Dashboard -> Storage -> Policies.';
 end;
 $$;
+
+-- Book PDF preview (features.bookPreview): trimmed demo PDF stored per product.
+alter table public.products add column if not exists preview_pdf_path text;
+alter table public.products add column if not exists preview_pdf_pages int;
