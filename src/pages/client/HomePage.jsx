@@ -84,7 +84,7 @@ function HomePage() {
 					alignItems: 'center',
 					justifyContent: 'center',
 					background:
-						'linear-gradient(160deg, var(--mantine-color-brand-9) 0%, var(--mantine-color-brand-7) 48%, var(--mantine-color-brand-5) 100%)',
+						'linear-gradient(160deg, var(--mantine-color-brand-1) 0%, var(--sf-surface) 55%, var(--mantine-color-brand-0) 100%)',
 				}}
 			>
 				<Container size="md" w="100%" py="xl">
@@ -98,7 +98,7 @@ function HomePage() {
 								fit="contain"
 							/>
 							{tagline && (
-								<Text size="xl" fw={600} ta="center" c="white">
+								<Text size="xl" fw={600} ta="center" c="dimmed">
 									{tagline}
 								</Text>
 							)}
@@ -112,7 +112,7 @@ function HomePage() {
 									borderRadius: 16,
 									overflow: 'hidden',
 									boxShadow:
-										'0 24px 60px color-mix(in srgb, var(--mantine-color-brand-9) 60%, transparent)',
+										'0 20px 50px color-mix(in srgb, var(--mantine-color-brand-9) 16%, transparent)',
 								}}
 							>
 								<AspectRatio ratio={16 / 9}>
@@ -127,7 +127,7 @@ function HomePage() {
 							</Box>
 						)}
 
-						<Button component={Link} to="/shop" size="lg" variant="white">
+						<Button component={Link} to="/shop" size="lg">
 							{t('home.heroCta')}
 						</Button>
 					</Stack>
