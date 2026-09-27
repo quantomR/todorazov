@@ -111,13 +111,15 @@ export const brand = {
 		youtube: true, // latest-video section on the homepage (see brand.youtube)
 	},
 
-	// Latest-video section (features.youtube). channelId is the UC… id of the
-	// YouTube channel; the youtube-latest Edge Function resolves the newest
-	// upload from its public RSS feed. Admins can pin a specific video in
-	// Settings. Find the id at youtube.com/<channel> → page source "channelId".
+	// Latest-video section (features.youtube). Admins pin a video in Settings;
+	// that always wins. autoLatest additionally tries to resolve the channel's
+	// newest upload via the youtube-latest Edge Function — but YouTube's RSS
+	// feed 404s from cloud/edge IPs, so keep it OFF until it runs on the
+	// YouTube Data API (with a key). channelId = the UC… id of the channel.
 	youtube: {
 		channelId: 'UCGBLquBIo-esRrCGuI8sqSQ',
 		channelUrl: 'https://youtube.com/@todorazov',
+		autoLatest: false,
 	},
 
 	// Web analytics (features.analytics). provider: 'plausible' | 'ga' | null.

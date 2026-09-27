@@ -62,10 +62,12 @@ function HomePage() {
 			.catch(() => {});
 	}, []);
 
-	// Resolve the channel's newest upload server-side — only when no video is
-	// pinned. Wait for settings so a pinned link isn't briefly overridden.
+	// Resolve the channel's newest upload server-side — only when autoLatest is
+	// on and no video is pinned. Wait for settings so a pinned link isn't
+	// briefly overridden.
 	useEffect(() => {
-		if (!brand.features.youtube || !settingsLoaded || pinnedVideo) return;
+		if (!brand.features.youtube || !brand.youtube?.autoLatest) return;
+		if (!settingsLoaded || pinnedVideo) return;
 		getLatestVideo(brand.youtube?.channelId)
 			.then((v) => setFetchedVideoSrc(youtubeEmbedSrc(v?.videoId)))
 			.catch(() => {});

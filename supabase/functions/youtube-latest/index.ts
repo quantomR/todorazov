@@ -47,8 +47,18 @@ serve(async (req) => {
 			return json({ error: 'Invalid or missing channelId' }, 400);
 		}
 
+		// A browser User-Agent + consent cookie are required from cloud/EU IPs —
+		// without them YouTube answers the feed with a 404/consent redirect.
 		const res = await fetch(
-			`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
+			`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
+			{
+				headers: {
+					'User-Agent':
+						'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+					'Accept-Language': 'en-US,en;q=0.9',
+					Cookie: 'CONSENT=YES+cb.20210328-17-p0.en+FX+000',
+				},
+			}
 		);
 		if (!res.ok) {
 			return json({ error: `Feed fetch failed (${res.status})` }, 502);
