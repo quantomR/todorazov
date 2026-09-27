@@ -116,7 +116,7 @@ function HomePage() {
 							)}
 						</Box>
 
-						<Button component={Link} to="/shop" size="lg" variant="white">
+						<Button component={Link} to="/shop" size="lg">
 							{t('home.heroCta')}
 						</Button>
 					</Stack>

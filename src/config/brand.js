@@ -43,28 +43,39 @@ export const brand = {
 	defaultLanguage: 'bg',
 	languages: ['bg', 'en'],
 
-	colorScheme: 'light', // 'light' | 'dark'
+	colorScheme: 'dark', // 'light' | 'dark'
 
 	palette: {
-		// Monochrome ink scale to match the black line-art logo.
+		// Golden-yellow accent for the dramatic black-and-yellow theme.
 		// The palette key is ALWAYS 'brand'.
 		brand: [
-			'#f4f5f6', // 0 — lightest
-			'#e8e9ea',
-			'#d3d4d6',
-			'#b6b8bb',
-			'#909396',
-			'#6e7174', // 5
-			'#54575a',
-			'#3c3f41',
-			'#26282a', // 8 — primary (near-black ink)
-			'#161719', // 9 — darkest
+			'#fff8e1', // 0 — lightest
+			'#fdeec0',
+			'#f7dd8f',
+			'#f0cc5c',
+			'#e8bd34',
+			'#dcae1e', // 5 — primary golden
+			'#c1971a',
+			'#9a7714',
+			'#74590f',
+			'#4f3d09', // 9 — darkest
 		],
-		// Optional Mantine `dark` scale override for dark sites
-		// (index 7 = page bg, 6 = cards, 4 = borders).
-		dark: null,
+		// Warm near-black scale (melancholic) for the dark site.
+		// index 7 = page bg, 6 = cards, 4 = borders.
+		dark: [
+			'#d7d3c9', // 0 — light text
+			'#b7b2a6',
+			'#928d80',
+			'#6d685d',
+			'#4a463d', // 4 — borders
+			'#312e28',
+			'#222019', // 6 — cards
+			'#161410', // 7 — page bg
+			'#0e0d0a',
+			'#070605', // 9
+		],
 	},
-	primaryShade: 8,
+	primaryShade: 5,
 
 	fonts: {
 		body: "'Inter', system-ui, sans-serif",
@@ -78,15 +89,15 @@ export const brand = {
 	// Semantic tokens → CSS variables --sf-* (see src/theme/index.js).
 	// Components may ONLY use these vars or Mantine tokens — never raw hex.
 	semantic: {
-		bg: '#f6f6f7',
-		surface: '#ffffff',
-		surfaceAlt: '#eeeef0',
-		border: '#e2e3e5',
-		text: '#1a1b1d',
-		textDim: '#6b6e72',
-		accent: '#161719',
-		success: '#2f7d3a',
-		danger: '#b3261e',
+		bg: '#141210',
+		surface: '#1c1a15',
+		surfaceAlt: '#24211a',
+		border: '#39352c',
+		text: '#ece7da',
+		textDim: '#9a9384',
+		accent: '#dcae1e',
+		success: '#6fae5f',
+		danger: '#d9634a',
 	},
 
 	currency: {

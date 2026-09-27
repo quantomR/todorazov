@@ -1,22 +1,20 @@
 -- Demo merch seed for Todor Azov (3 products with images).
--- Paste into Supabase → SQL Editor → Run. Safe to re-run (fixed SKUs).
+-- Paste into Supabase -> SQL Editor -> Run. Safe to re-run (idempotent).
 -- Images are served from the deployed site (public/demo/*.jpg).
 
 insert into public.categories (name_bg, name_en, sort_order)
-values ('Мърч', 'Merch', 1)
-on conflict do nothing;
+select 'Мърч', 'Merch', 1
+where not exists (select 1 from public.categories where name_en = 'Merch');
 
-with cat as (
-	select id from public.categories where name_en = 'Merch' order by created_at limit 1
-)
 insert into public.products (category_id, sku, name_bg, name_en, price_eur, is_active, featured)
-select cat.id, v.sku, v.name_bg, v.name_en, v.price, true, true
-from cat, (values
-	('DEMO-HOODIE', 'Суичър „Тодор Азов"', 'Todor Azov Hoodie', 49.90),
-	('DEMO-TSHIRT', 'Тениска „Тодор Азов"', 'Todor Azov T-shirt', 24.90),
-	('DEMO-BOOK',   'Книга „Тодор Азов"',  'Todor Azov Book',    19.90)
+select (select id from public.categories where name_en = 'Merch' limit 1),
+       v.sku, v.name_bg, v.name_en, v.price, true, true
+from (values
+	('DEMO-HOODIE', 'Суичър Тодор Азов', 'Todor Azov Hoodie', 49.90),
+	('DEMO-TSHIRT', 'Тениска Тодор Азов', 'Todor Azov T-shirt', 24.90),
+	('DEMO-BOOK',   'Книга Тодор Азов',  'Todor Azov Book',    19.90)
 ) as v(sku, name_bg, name_en, price)
-on conflict (sku) do nothing;
+where not exists (select 1 from public.products where sku = v.sku);
 
 insert into public.product_images (product_id, image_url, storage_path, sort_order)
 select p.id, i.url, i.path, 0
