@@ -11,6 +11,8 @@ import {
 	IconMessageCircle,
 	IconReceipt,
 	IconStar,
+	IconBriefcase,
+	IconInbox,
 	IconSettings,
 } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
@@ -58,6 +60,18 @@ const NAV_ITEMS = [
 		label: 'admin.reviews',
 		icon: IconStar,
 		when: brand.features.reviews,
+	},
+	{
+		path: `/${slug}/positions`,
+		label: 'admin.positions',
+		icon: IconBriefcase,
+		when: brand.features.careers,
+	},
+	{
+		path: `/${slug}/applications`,
+		label: 'admin.applications',
+		icon: IconInbox,
+		when: brand.features.careers,
 	},
 	{ path: `/${slug}/settings`, label: 'admin.settings', icon: IconSettings },
 ].filter((item) => item.when !== false);

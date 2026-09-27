@@ -20,6 +20,7 @@ const InquiryPage = lazy(() => import('@pages/client/InquiryPage'));
 const AboutPage = lazy(() => import('@pages/client/AboutPage'));
 const ContactPage = lazy(() => import('@pages/client/ContactPage'));
 const ServicesPage = lazy(() => import('@pages/client/ServicesPage'));
+const JoinPage = lazy(() => import('@pages/client/JoinPage'));
 const PrivacyPage = lazy(() => import('@pages/client/PrivacyPage'));
 const TermsPage = lazy(() => import('@pages/client/TermsPage'));
 const RefundPage = lazy(() => import('@pages/client/RefundPage'));
@@ -38,6 +39,8 @@ const InquiriesPage = lazy(() => import('@pages/admin/InquiriesPage'));
 const InquiryDetailPage = lazy(() => import('@pages/admin/InquiryDetailPage'));
 const ReviewsPage = lazy(() => import('@pages/admin/ReviewsPage'));
 const ServicesAdminPage = lazy(() => import('@pages/admin/ServicesAdminPage'));
+const PositionsAdminPage = lazy(() => import('@pages/admin/PositionsAdminPage'));
+const ApplicationsPage = lazy(() => import('@pages/admin/ApplicationsPage'));
 const SettingsPage = lazy(() => import('@pages/admin/SettingsPage'));
 
 const PageLoader = () => (
@@ -53,7 +56,7 @@ const S = (Component) => (
 );
 
 const slug = brand.adminSlug;
-const { cart, inquiry, attributes, services, legal, filters, reviews } = brand.features;
+const { cart, inquiry, attributes, services, legal, filters, reviews, careers } = brand.features;
 
 const clientChildren = [
 	{ path: '/', element: S(HomePage) },
@@ -68,6 +71,7 @@ const clientChildren = [
 		: []),
 	...(inquiry ? [{ path: '/inquiry', element: S(InquiryPage) }] : []),
 	...(services ? [{ path: '/services', element: S(ServicesPage) }] : []),
+	...(careers ? [{ path: '/join', element: S(JoinPage) }] : []),
 	{ path: '/about', element: S(AboutPage) },
 	{ path: '/contact', element: S(ContactPage) },
 	{ path: '/privacy', element: S(PrivacyPage) },
@@ -101,6 +105,12 @@ const adminChildren = [
 			]
 		: []),
 	...(services ? [{ path: `/${slug}/services`, element: S(ServicesAdminPage) }] : []),
+	...(careers
+		? [
+				{ path: `/${slug}/positions`, element: S(PositionsAdminPage) },
+				{ path: `/${slug}/applications`, element: S(ApplicationsPage) },
+			]
+		: []),
 	...(reviews ? [{ path: `/${slug}/reviews`, element: S(ReviewsPage) }] : []),
 	{ path: `/${slug}/settings`, element: S(SettingsPage) },
 ];

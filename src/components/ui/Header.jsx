@@ -22,6 +22,7 @@ const NAV_ITEMS = [
 	{ to: '/shop', key: 'nav.shop' },
 	{ to: '/inquiry', key: 'nav.inquiry', when: brand.features.inquiry },
 	{ to: '/services', key: 'nav.services', when: brand.features.services },
+	{ to: '/join', key: 'nav.careers', when: brand.features.careers },
 	{ to: '/about', key: 'nav.about' },
 	{ to: '/contact', key: 'nav.contact' },
 ].filter((item) => item.when !== false);

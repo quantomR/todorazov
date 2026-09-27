@@ -122,6 +122,7 @@ export const brand = {
 		courier: false, // courier office picker at checkout (needs a provider adapter)
 		analytics: false, // Plausible/GA injection + cookie consent (set brand.analytics)
 		youtube: true, // latest-video section on the homepage (see brand.youtube)
+		careers: true, // "join the channel": open positions + applications with CV upload
 	},
 
 	// Latest-video section (features.youtube). Admins pin a video in Settings;
