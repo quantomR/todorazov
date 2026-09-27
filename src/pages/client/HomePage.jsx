@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AspectRatio, Box, Button, Container, Image, Stack, Text, Title } from '@mantine/core';
+import { Box, Button, Container, Stack, Title } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { brand } from '@/config/brand';
 import { getFeaturedProducts, getActiveProducts } from '@services/publicProductService';
@@ -9,7 +9,13 @@ import { useSettingsStore } from '@store/settingsStore';
 import { videoEmbed } from '@lib/video';
 import { youtubeEmbedSrc } from '@lib/youtube';
 import ProductGrid from '@components/shop/ProductGrid';
+import tvBg from '@assets/tv-hero.jpg';
 import { usePageMeta } from '@lib/meta';
+
+// Screen cut-out of the TV artwork (src/assets/tv-hero.jpg), as a share of the
+// 16:9 frame. The video overlay uses the SAME percentages inside an aspect-
+// locked box, so the player stays registered to the screen at every width.
+const SCREEN = { left: '12%', top: '12%', width: '76%', height: '76%' };
 
 // Site-level structured data. Only emitted once the production URL is known,
 // so previews/demos stay clean. sameAs is built from the configured socials.
@@ -35,7 +41,7 @@ function siteJsonLd() {
 }
 
 function HomePage() {
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 	const jsonLd = useMemo(() => siteJsonLd(), []);
 	usePageMeta({ jsonLd });
 	const [products, setProducts] = useState([]);
@@ -71,61 +77,41 @@ function HomePage() {
 			.catch(() => {});
 	}, [settingsLoaded, pinnedVideo]);
 
-	const tagline = brand.tagline?.[i18n.language] ?? brand.tagline?.[brand.defaultLanguage];
-
-	const hasVideo = brand.features.youtube && Boolean(videoSrc);
-
 	return (
 		<Box>
 			<Box
 				style={{
-					minHeight: hasVideo ? 'min(92vh, 900px)' : 'min(72vh, 640px)',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
 					background:
 						'linear-gradient(160deg, var(--mantine-color-brand-1) 0%, var(--sf-surface) 55%, var(--mantine-color-brand-0) 100%)',
 				}}
 			>
-				<Container size="md" w="100%" py="xl">
+				<Container size="lg" py="xl">
 					<Stack align="center" gap="xl">
-						{/* Brand block — sits above the player, never over it */}
-						<Stack align="center" gap="sm">
-							<Image
-								src={brand.logo.header}
-								alt={brand.siteName}
-								w="min(240px, 60vw)"
-								fit="contain"
-							/>
-							{tagline && (
-								<Text size="xl" fw={600} ta="center" c="dimmed">
-									{tagline}
-								</Text>
+						{/* TV artwork; the video is anchored inside its screen */}
+						<Box
+							w="100%"
+							style={{
+								position: 'relative',
+								aspectRatio: '16 / 9',
+								backgroundImage: `url(${tvBg})`,
+								backgroundSize: 'cover',
+								backgroundPosition: 'center',
+								borderRadius: 18,
+								overflow: 'hidden',
+								boxShadow:
+									'0 30px 70px color-mix(in srgb, var(--mantine-color-brand-9) 22%, transparent)',
+							}}
+						>
+							{videoSrc && (
+								<iframe
+									src={videoSrc}
+									title={t('home.latestVideoTitle')}
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+									allowFullScreen
+									style={{ position: 'absolute', ...SCREEN, border: 0 }}
+								/>
 							)}
-						</Stack>
-
-						{hasVideo && (
-							<Box
-								w="100%"
-								maw={760}
-								style={{
-									borderRadius: 16,
-									overflow: 'hidden',
-									boxShadow:
-										'0 20px 50px color-mix(in srgb, var(--mantine-color-brand-9) 16%, transparent)',
-								}}
-							>
-								<AspectRatio ratio={16 / 9}>
-									<iframe
-										src={videoSrc}
-										title={t('home.latestVideoTitle')}
-										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-										allowFullScreen
-										style={{ border: 0 }}
-									/>
-								</AspectRatio>
-							</Box>
-						)}
+						</Box>
 
 						<Button component={Link} to="/shop" size="lg">
 							{t('home.heroCta')}
