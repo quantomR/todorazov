@@ -9,7 +9,8 @@ import { useSettingsStore } from '@store/settingsStore';
 import { videoEmbed } from '@lib/video';
 import { youtubeEmbedSrc } from '@lib/youtube';
 import ProductGrid from '@components/shop/ProductGrid';
-import tvBg from '@assets/tv-hero.jpg';
+import roomBg from '@assets/room.svg';
+import tvFrame from '@assets/tv-frame.png';
 import { usePageMeta } from '@lib/meta';
 
 // Screen cut-out of the TV artwork (src/assets/tv-hero.jpg), as a share of the
@@ -81,25 +82,27 @@ function HomePage() {
 		<Box>
 			<Box
 				style={{
-					background:
-						'linear-gradient(160deg, var(--mantine-color-brand-1) 0%, var(--sf-surface) 55%, var(--mantine-color-brand-0) 100%)',
+					minHeight: 'clamp(460px, 70vh, 780px)',
+					display: 'flex',
+					alignItems: 'center',
+					backgroundImage: `url(${roomBg})`,
+					backgroundSize: 'cover',
+					backgroundPosition: 'center',
 				}}
 			>
-				<Container size="lg" py="xl">
+				<Container size="lg" w="100%" py="xl">
 					<Stack align="center" gap="xl">
-						{/* TV artwork; the video is anchored inside its screen */}
+						{/* TV set in the room; the video is anchored inside its screen */}
 						<Box
 							w="100%"
+							maw={900}
 							style={{
 								position: 'relative',
 								aspectRatio: '16 / 9',
-								backgroundImage: `url(${tvBg})`,
-								backgroundSize: 'cover',
+								backgroundImage: `url(${tvFrame})`,
+								backgroundSize: 'contain',
+								backgroundRepeat: 'no-repeat',
 								backgroundPosition: 'center',
-								borderRadius: 18,
-								overflow: 'hidden',
-								boxShadow:
-									'0 30px 70px color-mix(in srgb, var(--mantine-color-brand-9) 22%, transparent)',
 							}}
 						>
 							{videoSrc && (
@@ -113,7 +116,7 @@ function HomePage() {
 							)}
 						</Box>
 
-						<Button component={Link} to="/shop" size="lg">
+						<Button component={Link} to="/shop" size="lg" variant="white">
 							{t('home.heroCta')}
 						</Button>
 					</Stack>
