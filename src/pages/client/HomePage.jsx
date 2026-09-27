@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Button, Container, Image, Stack, Text, Title } from '@mantine/core';
+import { AspectRatio, Box, Button, Container, Image, Stack, Text, Title } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { brand } from '@/config/brand';
 import { getFeaturedProducts, getActiveProducts } from '@services/publicProductService';
@@ -9,8 +9,6 @@ import { useSettingsStore } from '@store/settingsStore';
 import { videoEmbed } from '@lib/video';
 import { youtubeEmbedSrc } from '@lib/youtube';
 import ProductGrid from '@components/shop/ProductGrid';
-import LatestVideo from '@components/ui/LatestVideo';
-import heroImage from '@assets/hero.jpg';
 import { usePageMeta } from '@lib/meta';
 
 // Site-level structured data. Only emitted once the production URL is known,
@@ -75,43 +73,66 @@ function HomePage() {
 
 	const tagline = brand.tagline?.[i18n.language] ?? brand.tagline?.[brand.defaultLanguage];
 
+	const hasVideo = brand.features.youtube && Boolean(videoSrc);
+
 	return (
 		<Box>
 			<Box
 				style={{
-					position: 'relative',
-					minHeight: 'min(70vh, 640px)',
+					minHeight: hasVideo ? 'min(92vh, 900px)' : 'min(72vh, 640px)',
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'center',
-					backgroundImage: `url(${heroImage})`,
-					backgroundSize: 'cover',
-					backgroundPosition: 'center',
+					background:
+						'linear-gradient(160deg, var(--mantine-color-brand-9) 0%, var(--mantine-color-brand-7) 48%, var(--mantine-color-brand-5) 100%)',
 				}}
 			>
-				<Stack
-					align="center"
-					gap="lg"
-					px="xl"
-					py="xl"
-					style={{
-						background: 'color-mix(in srgb, var(--sf-bg) 72%, transparent)',
-						borderRadius: 12,
-					}}
-				>
-					<Image src={brand.logo.header} alt={brand.siteName} w="min(320px, 70vw)" fit="contain" />
-					{tagline && (
-						<Text size="lg" ta="center" c="dimmed">
-							{tagline}
-						</Text>
-					)}
-					<Button component={Link} to="/shop" size="md">
-						{t('home.heroCta')}
-					</Button>
-				</Stack>
-			</Box>
+				<Container size="md" w="100%" py="xl">
+					<Stack align="center" gap="xl">
+						{/* Brand block — sits above the player, never over it */}
+						<Stack align="center" gap="sm">
+							<Image
+								src={brand.logo.header}
+								alt={brand.siteName}
+								w="min(240px, 60vw)"
+								fit="contain"
+							/>
+							{tagline && (
+								<Text size="xl" fw={600} ta="center" c="white">
+									{tagline}
+								</Text>
+							)}
+						</Stack>
 
-			{brand.features.youtube && <LatestVideo src={videoSrc} />}
+						{hasVideo && (
+							<Box
+								w="100%"
+								maw={760}
+								style={{
+									borderRadius: 16,
+									overflow: 'hidden',
+									boxShadow:
+										'0 24px 60px color-mix(in srgb, var(--mantine-color-brand-9) 60%, transparent)',
+								}}
+							>
+								<AspectRatio ratio={16 / 9}>
+									<iframe
+										src={videoSrc}
+										title={t('home.latestVideoTitle')}
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+										allowFullScreen
+										style={{ border: 0 }}
+									/>
+								</AspectRatio>
+							</Box>
+						)}
+
+						<Button component={Link} to="/shop" size="lg" variant="white">
+							{t('home.heroCta')}
+						</Button>
+					</Stack>
+				</Container>
+			</Box>
 
 			{products.length > 0 && (
 				<Container size="xl" py="xl">
