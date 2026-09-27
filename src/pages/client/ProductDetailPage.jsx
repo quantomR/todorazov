@@ -267,8 +267,7 @@ function ProductDetailPage() {
 					opened={previewOpen}
 					onClose={() => setPreviewOpen(false)}
 					title={t('bookPreview.title')}
-					size="auto"
-					centered
+					fullScreen
 				>
 					<Suspense
 						fallback={
